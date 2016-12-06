@@ -11,7 +11,8 @@ var WsIndicator = require("./wsIndicator").init(React),
 var PopupContent = {
 	map    : require("./mapPanel").init(React),
 	detail : require("./detailPanel").init(React),
-	filter : require("./filter").init(React)
+	filter : require("./filter").init(React),
+	exportP : require("./exportPanel").init(React)
 };
 
 var ifPause     = false,
@@ -80,7 +81,8 @@ function util_merge(left,right){
 
 
 //init popup
-var showPop;
+var showPop,
+	hidePop;
 (function(){
 	$("body").append('<div id="J_popOuter"></div>');
 	var pop = React.render(
@@ -91,6 +93,9 @@ var showPop;
 	showPop = function(popArg){
 		var stateArg = util_merge({show : true },popArg);
 		pop.setState(stateArg);
+	};
+	hidePop = function(){
+		pop.setHide();
 	};
 })();
 
@@ -141,7 +146,13 @@ var recorder;
 		});
 	});
 
-	function showDetail(data){
+	function showDetail(data,event){
+		if(event.target.className == 'uk-icon-eraser')
+		{
+			recordSet[data.id] = null;
+			eventCenter.dispatchEvent("recordSetUpdated");
+		}
+		else
 		showPop({left:"35%",content:React.createElement(PopupContent["detail"], {data:data})});
 	}
 
@@ -192,6 +203,36 @@ var recorder;
 			ifPause = false;
 		}
 	});
+
+	var exportBtn = $(".J_exportContainer");
+	exportBtn.on("click",function(e){
+		e.stopPropagation();
+		e.preventDefault();
+		$.getJSON("getRootPath",function(resObj){
+			var defaultPath = resObj.fullPath + "/default.postman_collection";
+			var ExportPanel = PopupContent["exportP"];
+			exportPanelEl = (<ExportPanel defaultValue = {defaultPath} onExportCollection={exportCollection} /> );
+			showPop({ left:"60%", content:exportPanelEl });			
+		});
+		
+		
+	});	
+
+	function exportCollection(userInput){
+		var idList = [];
+		for (key in recordSet) {
+			if(recordSet[key])
+				idList.push(key);
+		};
+		var data = {
+			type: 'export',
+			path: userInput, 
+			data: idList
+		}
+		ws.send(data,function(){
+			hidePop();
+		});
+	}
 
 	//preset button
 	(function (){

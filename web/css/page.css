@@ -165,6 +165,14 @@ body, html {
 	width: 140px;
 }
 
+.mainTableWrapper .col_testtype{
+	width: 70px;
+}
+
+.mainTableWrapper .col_del{
+	width: 30px;
+}
+
 .mainTableWrapper tr.row_odd{
 	background: #f5f5f5;
 }
@@ -308,6 +316,22 @@ body, html {
 }
 
 /*filter end*/
+
+/*export*/
+
+.exportSection .uk-form{
+	margin-top: 20px;
+}
+
+.exportSection-btn{
+	margin-top: 10px;
+}
+
+.exportSection .uk-form input{
+	width: 400px;
+}
+
+/*export end*/
 
 
 /*map panel*/

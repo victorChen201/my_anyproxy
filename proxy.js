@@ -75,6 +75,9 @@ function proxyServer(option){
 
     var currentRule = requestHandler.setRules(proxyRules); //TODO : optimize calling for set rule
 
+    if(option.fuzz)
+        currentRule.setFuzzFlag(true);
+
     if(!!option.interceptHttps){
         if (!certMgr.isRootCAFileExists()) {
             util.showRootInstallTip();

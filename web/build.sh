@@ -1,2 +1,2 @@
-jsx /src /build 
+jsx src/ /build 
 webpack --progress --colors

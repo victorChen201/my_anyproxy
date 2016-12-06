@@ -42,6 +42,7 @@
 			{@/if}
 
 			<span title="${rule}"><i class="uk-icon-chain"></i>Rule : ${rule}</span>
+			<a href="#"><span class="topBtn J_exportContainer"><i class="uk-icon-save"></i>Export</span></a>
 		</div>
 
 		<div style="clear:both"></div>
@@ -50,7 +51,7 @@
 	<div class="mainTableWrapper" id="J_content"></div>
 
 	<input type="hidden" id="socketPort" value="${wsPort}" />
-	<input type="hidden" id="baseUrl" value="${ipAddress}" />
+	<input type="hidden" class="uk-icon-close" id="baseUrl" value="${ipAddress}" />
 
     <script src="./page.js"></script>
 </body>

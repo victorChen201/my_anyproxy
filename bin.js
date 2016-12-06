@@ -23,6 +23,7 @@ program
     .option('-s, --silent', 'do not print anything into terminal')
     .option('-c, --clear', 'clear all the tmp certificates')
     .option('-o, --global', 'set as global proxy for system')
+    .option('-F, --fuzz','fuzz test mode')
     .option('install', '[alpha] install node modules')
     .parse(process.argv);
 
@@ -94,6 +95,7 @@ if(program.clear){
         disableWebInterface : false,
         setAsGlobalProxy    : program.global,
         interceptHttps      : program.intercept,
-        silent              : program.silent
+        silent              : program.silent,
+        fuzz                : program.fuzz
     });
 }

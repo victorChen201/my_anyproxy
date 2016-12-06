@@ -49,6 +49,8 @@ function init(React){
 					<td title={data.path}>{data.path}</td>
 					<td>{data.mime}</td>
 					<td>{dateStr}</td>
+					<td>{data.testType}</td>
+					<td><i className="uk-icon-eraser"></i></td>
 				</tr>
 			);
 		},

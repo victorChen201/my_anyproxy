@@ -72,11 +72,12 @@ function anyproxy_wsUtil(config){
 	initSocket();
 };
 
-anyproxy_wsUtil.prototype.send = function(data){
+anyproxy_wsUtil.prototype.send = function(data,callback){
 	if(typeof data == "object"){
 		data = JSON.stringify(data);
 	}
 	this.dataSocket.send(data);
+	callback && callback();
 };
 
 anyproxy_wsUtil.prototype.reqBody = function(id,callback){
