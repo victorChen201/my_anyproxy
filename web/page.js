@@ -205,7 +205,6 @@
 
 		function updateShowedSet(idSet){
 			showedIdSet = idSet;
-			console.log('update showedSet'+idSet.length);
 		}
 
 		//init recorder panel
@@ -20216,8 +20215,6 @@
 						}
 
 						rowCollection.push(React.createElement(RecordRow, {key: item.id, data: item, onSelect: self.props.onSelect.bind(self,item)}));
-						//var a = item.id
-						//if(self.state.showedList.indexOf(a.toString()) == -1)
 						self.state.showedList.push(item.id);
 					}
 				}
@@ -28298,6 +28295,7 @@
 						React.createElement("h4", {className: "subTitle"}, "Export Postman collection"), 
 							React.createElement("div", {className: "exportSection"}, 
 							React.createElement("div", {className: "uk-form"}, 
+								React.createElement("label", {className: "uk-form-label"}, "Collection file path:"), 
 								React.createElement("input", {className: "uk-form-large", ref: "pathInput", defaultValue: self.props.defaultValue, type: "text", width: "300"})
 							)), 
 					    React.createElement("div", {className: "exportSection-btn"}, 
@@ -28305,7 +28303,17 @@
 		                        )
 					)
 				);
-			}
+			},
+			setFocus:function(){
+				var self = this;
+				React.findDOMNode(self.refs.pathInput).focus();
+			},
+			componentDidUpdate:function(){
+				this.setFocus();
+			},		
+			componentDidMount:function(){
+				this.setFocus();
+			}		
 		});
 
 		return ExportPanel;

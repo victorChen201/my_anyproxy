@@ -224,11 +224,6 @@ var recorder;
 	});	
 
 	function exportCollection(userInput){
-		// var idList = [];
-		// for (key in recordSet) {
-		// 	if(recordSet[key])
-		// 		idList.push(key);
-		// };
 		var data = {
 			type: 'export',
 			path: userInput, 

@@ -159,7 +159,6 @@ var recorder;
 
 	function updateShowedSet(idSet){
 		showedIdSet = idSet;
-		console.log('update showedSet'+idSet.length);
 	}
 
 	//init recorder panel

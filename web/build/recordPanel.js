@@ -44,8 +44,6 @@ function init(React){
 					}
 
 					rowCollection.push(React.createElement(RecordRow, {key: item.id, data: item, onSelect: self.props.onSelect.bind(self,item)}));
-					//var a = item.id
-					//if(self.state.showedList.indexOf(a.toString()) == -1)
 					self.state.showedList.push(item.id);
 				}
 			}

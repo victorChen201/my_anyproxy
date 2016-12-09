@@ -166,7 +166,7 @@ body, html {
 }
 
 .mainTableWrapper .col_testtype{
-	width: 70px;
+	width: 100px;
 }
 
 .mainTableWrapper .col_del{
@@ -328,6 +328,7 @@ body, html {
 }
 
 .exportSection .uk-form input{
+	margin-top: 5px;
 	width: 400px;
 }
 
