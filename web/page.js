@@ -62,7 +62,8 @@
 	};
 
 	var ifPause     = false,
-	    recordSet   = [];
+	    recordSet   = [],
+	    showedIdSet  = [];
 
 	//Event : wsGetUpdate
 	//Event : recordSetUpdated
@@ -202,9 +203,14 @@
 			showPop({left:"35%",content:React.createElement(PopupContent["detail"], {data:data})});
 		}
 
+		function updateShowedSet(idSet){
+			showedIdSet = idSet;
+			console.log('update showedSet'+idSet.length);
+		}
+
 		//init recorder panel
 		recorder = React.render(
-			React.createElement(RecordPanel, {onSelect: showDetail}),
+			React.createElement(RecordPanel, {onChange: updateShowedSet, onSelect: showDetail}),
 			document.getElementById("J_content")
 		);
 
@@ -265,15 +271,15 @@
 		});	
 
 		function exportCollection(userInput){
-			var idList = [];
-			for (key in recordSet) {
-				if(recordSet[key])
-					idList.push(key);
-			};
+			// var idList = [];
+			// for (key in recordSet) {
+			// 	if(recordSet[key])
+			// 		idList.push(key);
+			// };
 			var data = {
 				type: 'export',
 				path: userInput, 
-				data: idList
+				data: showedIdSet
 			}
 			ws.send(data,function(){
 				hidePop();
@@ -20171,7 +20177,8 @@
 			getInitialState : function(){
 				return {
 					list  : [],
-					filter: ""
+					filter: "",
+					showedList : []
 				};
 			},
 			render : function(){
@@ -20179,6 +20186,7 @@
 					rowCollection = [],
 					filterStr     = self.state.filter,
 					filter        = filterStr;
+					self.state.showedList = [];
 
 				//regexp
 				if(filterStr[0]=="/" && filterStr[filterStr.length-1]=="/"){
@@ -20208,6 +20216,9 @@
 						}
 
 						rowCollection.push(React.createElement(RecordRow, {key: item.id, data: item, onSelect: self.props.onSelect.bind(self,item)}));
+						//var a = item.id
+						//if(self.state.showedList.indexOf(a.toString()) == -1)
+						self.state.showedList.push(item.id);
 					}
 				}
 
@@ -20231,6 +20242,10 @@
 						)
 					)
 				);
+			},
+			componentDidUpdate:function(){
+				var self = this;
+				self.props.onChange && self.props.onChange(self.state.showedList)
 			}
 		});
 

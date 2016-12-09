@@ -5,7 +5,8 @@ function init(React){
 		getInitialState : function(){
 			return {
 				list  : [],
-				filter: ""
+				filter: "",
+				showedList : []
 			};
 		},
 		render : function(){
@@ -13,6 +14,7 @@ function init(React){
 				rowCollection = [],
 				filterStr     = self.state.filter,
 				filter        = filterStr;
+				self.state.showedList = [];
 
 			//regexp
 			if(filterStr[0]=="/" && filterStr[filterStr.length-1]=="/"){
@@ -42,6 +44,9 @@ function init(React){
 					}
 
 					rowCollection.push(React.createElement(RecordRow, {key: item.id, data: item, onSelect: self.props.onSelect.bind(self,item)}));
+					//var a = item.id
+					//if(self.state.showedList.indexOf(a.toString()) == -1)
+					self.state.showedList.push(item.id);
 				}
 			}
 
@@ -65,6 +70,10 @@ function init(React){
 					)
 				)
 			);
+		},
+		componentDidUpdate:function(){
+			var self = this;
+			self.props.onChange && self.props.onChange(self.state.showedList)
 		}
 	});
 

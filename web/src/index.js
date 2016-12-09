@@ -16,7 +16,8 @@ var PopupContent = {
 };
 
 var ifPause     = false,
-    recordSet   = [];
+    recordSet   = [],
+    showedIdSet  = [];
 
 //Event : wsGetUpdate
 //Event : recordSetUpdated
@@ -156,9 +157,13 @@ var recorder;
 		showPop({left:"35%",content:React.createElement(PopupContent["detail"], {data:data})});
 	}
 
+	function updateShowedSet(idSet){
+		showedIdSet = idSet;
+	}
+
 	//init recorder panel
 	recorder = React.render(
-		<RecordPanel onSelect={showDetail}/>,
+		<RecordPanel onChange={updateShowedSet} onSelect={showDetail}/>,
 		document.getElementById("J_content")
 	);
 
@@ -219,15 +224,15 @@ var recorder;
 	});	
 
 	function exportCollection(userInput){
-		var idList = [];
-		for (key in recordSet) {
-			if(recordSet[key])
-				idList.push(key);
-		};
+		// var idList = [];
+		// for (key in recordSet) {
+		// 	if(recordSet[key])
+		// 		idList.push(key);
+		// };
 		var data = {
 			type: 'export',
 			path: userInput, 
-			data: idList
+			data: showedIdSet
 		}
 		ws.send(data,function(){
 			hidePop();
