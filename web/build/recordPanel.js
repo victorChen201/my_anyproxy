@@ -42,7 +42,6 @@ function init(React){
 					}else{
 						item._needRender  = false;
 					}
-
 					rowCollection.push(React.createElement(RecordRow, {key: item.id, data: item, onSelect: self.props.onSelect.bind(self,item)}));
 					self.state.showedList.push(item.id);
 				}
@@ -60,7 +59,8 @@ function init(React){
 							React.createElement("th", {className: "col_mime"}, "mime type"), 
 							React.createElement("th", {className: "col_time"}, "time"), 
 							React.createElement("th", {className: "col_testtype"}, "test type"), 
-							React.createElement("th", {className: "col_del"}, "del")
+							React.createElement("th", {className: "col_del"}, "del"),
+							React.createElement("th", {className: "col_add"}, "add")
 						)
 					), 
 					React.createElement("tbody", null, 

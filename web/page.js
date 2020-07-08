@@ -166,6 +166,17 @@
 			}
 		}
 
+		// function recordAdd(newRecord) {
+		// 	if (newRecord && newRecord.id) {
+		// 		if (!recordSet[newRecord.id]) {
+		// 			recordSet[newRecord.id] = newRecord;
+		// 		} else {
+		// 			util_merge(recordSet[newRecord.id], newRecord);
+		// 		}
+		// 		recordSet[newRecord.id]._justUpdated = true;
+		// 		console.log(newRecord);
+		// 	}
+		// }
 		function initRecordSet(){
 			$.getJSON("/lastestLog",function(res){
 				if(typeof res == "object"){
@@ -180,6 +191,8 @@
 		}
 
 		eventCenter.addListener("wsGetUpdate",updateRecordSet);
+
+		// eventCenter.addListener("recordAdd",recordAdd);
 
 		eventCenter.addListener('recordSetUpdated',function(){
 			recorder.setState({
@@ -196,8 +209,22 @@
 		function showDetail(data,event){
 			if(event.target.className == 'uk-icon-eraser')
 			{
+
 				recordSet[data.id] = null;
 				eventCenter.dispatchEvent("recordSetUpdated");
+			}
+			else if(event.target.className == 'uk-icon-save')
+			{
+				console.log(data);
+				// recordSet[data.id] = null;
+				// eventCenter.dispatchEvent("recordAdd");
+				var data = {
+					type: 'export',
+					path: '',
+					data: [data.id]
+				}
+				ws.send(data,function(){
+				})
 			}
 			else
 			showPop({left:"35%",content:React.createElement(PopupContent["detail"], {data:data})});
@@ -280,6 +307,7 @@
 				path: userInput, 
 				data: showedIdSet
 			}
+			// console.log(showedIdSet)
 			ws.send(data,function(){
 				hidePop();
 			});
@@ -7811,6 +7839,7 @@
 	  datalist: 'datalist',
 	  dd: 'dd',
 	  del: 'del',
+		add: 'add',
 	  details: 'details',
 	  dfn: 'dfn',
 	  dialog: 'dialog',
@@ -18256,6 +18285,7 @@
 	  'Right': 'ArrowRight',
 	  'Down': 'ArrowDown',
 	  'Del': 'Delete',
+		'Add': 'Add',
 	  'Win': 'OS',
 	  'Menu': 'ContextMenu',
 	  'Apps': 'ContextMenu',
@@ -20231,7 +20261,8 @@
 								React.createElement("th", {className: "col_mime"}, "mime type"), 
 								React.createElement("th", {className: "col_time"}, "time"), 
 								React.createElement("th", {className: "col_testtype"}, "test type"), 
-								React.createElement("th", {className: "col_del"}, "del")
+								React.createElement("th", {className: "col_del"}, "del"),
+								React.createElement("th", {className: "col_add"}, "add")
 							)
 						), 
 						React.createElement("tbody", null, 
@@ -20307,7 +20338,8 @@
 						React.createElement("td", null, data.mime), 
 						React.createElement("td", null, dateStr), 
 						React.createElement("td", null, data.testType), 
-						React.createElement("td", null, React.createElement("i", {className: "uk-icon-eraser"}))
+						React.createElement("td", null, React.createElement("i", {className: "uk-icon-eraser"})),
+						React.createElement("td", null, React.createElement("i", {className: "uk-icon-save"}))
 					)
 				);
 			},
@@ -27427,7 +27459,8 @@
 				// simply specifying the functions in FF throws an error
 				set : function (key, val) { return window.localStorage.setItem(key, val); },
 				get : function (key) { return window.localStorage.getItem(key); },
-				del : function (key) { return window.localStorage.removeItem(key); }
+				del : function (key) { return window.localStorage.removeItem(key); },
+				add : function (key) { return window.localStorage.getItem(key); },
 			};
 		}($));
 

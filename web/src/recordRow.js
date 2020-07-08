@@ -51,6 +51,7 @@ function init(React){
 					<td>{dateStr}</td>
 					<td>{data.testType}</td>
 					<td><i className="uk-icon-eraser"></i></td>
+					<td><i className="uk-icon-save"></i></td>
 				</tr>
 			);
 		},

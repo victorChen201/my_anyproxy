@@ -172,6 +172,9 @@ body, html {
 .mainTableWrapper .col_del{
 	width: 30px;
 }
+.mainTableWrapper .col_add{
+	width: 30px;
+}
 
 .mainTableWrapper tr.row_odd{
 	background: #f5f5f5;

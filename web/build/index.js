@@ -153,6 +153,17 @@ var recorder;
 			recordSet[data.id] = null;
 			eventCenter.dispatchEvent("recordSetUpdated");
 		}
+		else if(event.target.className == 'uk-icon-save')
+		{
+			console.log("uk-icon-save 333333333333");
+			var data = {
+				type: 'export',
+				path: '',
+				data: [data.id]
+			}
+			ws.send(data,function(){
+			})
+		}
 		else
 		showPop({left:"35%",content:React.createElement(PopupContent["detail"], {data:data})});
 	}

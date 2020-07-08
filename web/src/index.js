@@ -150,8 +150,15 @@ var recorder;
 	function showDetail(data,event){
 		if(event.target.className == 'uk-icon-eraser')
 		{
+
 			recordSet[data.id] = null;
 			eventCenter.dispatchEvent("recordSetUpdated");
+		}
+		else if(event.target.className == 'uk-icon-save')
+		{
+			console.log("uk-icon-save 111111111");
+			recordSet[data.id] = null;
+			eventCenter.dispatchEvent("recordAdd");
 		}
 		else
 		showPop({left:"35%",content:React.createElement(PopupContent["detail"], {data:data})});

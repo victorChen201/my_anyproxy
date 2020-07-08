@@ -6961,7 +6961,8 @@
 			// simply specifying the functions in FF throws an error
 			set : function (key, val) { return window.localStorage.setItem(key, val); },
 			get : function (key) { return window.localStorage.getItem(key); },
-			del : function (key) { return window.localStorage.removeItem(key); }
+			del : function (key) { return window.localStorage.removeItem(key); },
+			add : function (key) { return window.localStorage.getItem(key); },
 		};
 	}($));
 
