@@ -156,7 +156,7 @@ var recorder;
 		}
 		else if(event.target.className == 'uk-icon-save')
 		{
-			console.log("uk-icon-save 111111111");
+			// console.log("uk-icon-save 111111111");
 			recordSet[data.id] = null;
 			eventCenter.dispatchEvent("recordAdd");
 		}

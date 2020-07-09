@@ -20226,6 +20226,7 @@
 
 				for(var i = self.state.list.length-1 ; i >=0 ; i--){
 					var item = self.state.list[i];
+					// console.log(item);
 					if(item){
 						if(filter && item){
 							try{
@@ -20260,7 +20261,7 @@
 								React.createElement("th", {className: "col_path"}, "path"), 
 								React.createElement("th", {className: "col_mime"}, "mime type"), 
 								React.createElement("th", {className: "col_time"}, "time"), 
-								React.createElement("th", {className: "col_testtype"}, "test type"), 
+								// React.createElement("th", {className: "col_testtype"}, "test type"),
 								React.createElement("th", {className: "col_del"}, "del"),
 								React.createElement("th", {className: "col_add"}, "add")
 							)
@@ -20337,7 +20338,7 @@
 						React.createElement("td", {title: data.path}, data.path), 
 						React.createElement("td", null, data.mime), 
 						React.createElement("td", null, dateStr), 
-						React.createElement("td", null, data.testType), 
+						// React.createElement("td", null, data.testType),
 						React.createElement("td", null, React.createElement("i", {className: "uk-icon-eraser"})),
 						React.createElement("td", null, React.createElement("i", {className: "uk-icon-save"}))
 					)

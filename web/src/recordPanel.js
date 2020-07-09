@@ -59,7 +59,7 @@ function init(React){
 							<th className="col_path">path</th>
 							<th className="col_mime">mime type</th>
 							<th className="col_time">time</th>
-							<th className="col_testtype">test type</th>
+							// <th className="col_testtype">test type</th>
 							<th className="col_del">del</th>
 							<th className="col_add">add</th>
 						</tr>

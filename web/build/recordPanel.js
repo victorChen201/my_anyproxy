@@ -58,7 +58,7 @@ function init(React){
 							React.createElement("th", {className: "col_path"}, "path"), 
 							React.createElement("th", {className: "col_mime"}, "mime type"), 
 							React.createElement("th", {className: "col_time"}, "time"), 
-							React.createElement("th", {className: "col_testtype"}, "test type"), 
+							// React.createElement("th", {className: "col_testtype"}, "test type"),
 							React.createElement("th", {className: "col_del"}, "del"),
 							React.createElement("th", {className: "col_add"}, "add")
 						)

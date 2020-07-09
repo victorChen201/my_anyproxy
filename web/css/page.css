@@ -162,11 +162,11 @@ body, html {
 }
 
 .mainTableWrapper .col_time{
-	width: 140px;
+	width: 60px;
 }
 
 .mainTableWrapper .col_testtype{
-	width: 100px;
+	width: 80px;
 }
 
 .mainTableWrapper .col_del{

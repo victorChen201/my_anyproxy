@@ -155,7 +155,6 @@ var recorder;
 		}
 		else if(event.target.className == 'uk-icon-save')
 		{
-			console.log("uk-icon-save 333333333333");
 			var data = {
 				type: 'export',
 				path: '',
