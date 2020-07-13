@@ -138,3 +138,8 @@ License
 -----------------
 
 * Apache License, Version 2.0
+
+UIKit中文文档
+-----------------
+
+* https://wizardforcel.gitbooks.io/uikit-doc/content/6.html

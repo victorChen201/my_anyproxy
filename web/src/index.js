@@ -150,7 +150,7 @@ var recorder;
 	function showDetail(data,event){
 		if(event.target.className == 'uk-icon-eraser')
 		{
-
+			console.log("uk-icon-save");
 			recordSet[data.id] = null;
 			eventCenter.dispatchEvent("recordSetUpdated");
 		}

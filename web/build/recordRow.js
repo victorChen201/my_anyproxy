@@ -49,9 +49,9 @@ function init(React){
 					React.createElement("td", {title: data.path}, data.path), 
 					React.createElement("td", null, data.mime), 
 					React.createElement("td", null, dateStr), 
-					React.createElement("td", null, data.testType), 
+					// React.createElement("td", null, data.testType),
 					React.createElement("td", null, React.createElement("i", {className: "uk-icon-eraser"})),
-					React.createElement("td", null, React.createElement("i", {className: "uk-icon-save"}))
+					React.createElement("td", null, React.createElement("i", {className: "uk-icon-refresh"}))
 				)
 			);
 		},

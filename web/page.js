@@ -213,7 +213,7 @@
 				recordSet[data.id] = null;
 				eventCenter.dispatchEvent("recordSetUpdated");
 			}
-			else if(event.target.className == 'uk-icon-save')
+			else if(event.target.className == 'uk-icon-refresh')
 			{
 				console.log(data);
 				// recordSet[data.id] = null;
@@ -20340,7 +20340,7 @@
 						React.createElement("td", null, dateStr), 
 						// React.createElement("td", null, data.testType),
 						React.createElement("td", null, React.createElement("i", {className: "uk-icon-eraser"})),
-						React.createElement("td", null, React.createElement("i", {className: "uk-icon-save"}))
+						React.createElement("td", null, React.createElement("i", {className: "uk-icon-refresh"}))
 					)
 				);
 			},
