@@ -13,11 +13,11 @@ function init(React){
 			return (
 				<div>
 					<h4 className="subTitle">Export Postman collection</h4>
-						<div className="exportSection">
-						<div className="uk-form">
-							<label className="uk-form-label" >Collection file path:</label>
-							<input className="uk-form-large" ref="pathInput" defaultValue={self.props.defaultValue} type="text" width="300"/>
-						</div></div>
+						// <div className="exportSection">
+						// <div className="uk-form">
+						// 	<label className="uk-form-label" >Collection file path:</label>
+						// 	<input className="uk-form-large" ref="pathInput" defaultValue={self.props.defaultValue} type="text" width="300"/>
+						// </div></div>
 				    <div className="exportSection-btn">
 		            	        <button type="button" className="uk-button" onClick={self.dealSave}>Save</button>
 	                        </div>

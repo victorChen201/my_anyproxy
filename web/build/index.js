@@ -150,13 +150,13 @@ var recorder;
 	function showDetail(data,event){
 		if(event.target.className == 'uk-icon-eraser')
 		{
-			console.log(data);
+
 			recordSet[data.id] = null;
 			eventCenter.dispatchEvent("recordSetUpdated");
 		}
 		else if(event.target.className == 'uk-icon-refresh')
 		{
-			console.log(data);
+
 			var data = {
 				type: 'export',
 				path: '',

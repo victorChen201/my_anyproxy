@@ -209,7 +209,6 @@
 		function showDetail(data,event){
 			if(event.target.className == 'uk-icon-eraser')
 			{
-
 				recordSet[data.id] = null;
 				eventCenter.dispatchEvent("recordSetUpdated");
 			}
@@ -307,7 +306,7 @@
 				path: userInput, 
 				data: showedIdSet
 			}
-			// console.log(showedIdSet)
+			console.log(showedIdSet)
 			ws.send(data,function(){
 				hidePop();
 			});
@@ -28317,7 +28316,7 @@
 		var ExportPanel = React.createClass({displayName: "ExportPanel",
 			dealSave:function(){
 				var self = this,
-					userInput = React.findDOMNode(self.refs.pathInput).value;
+					userInput = '';//React.findDOMNode(self.refs.pathInput).value; //by victorchen 20200714
 
 				self.props.onExportCollection && self.props.onExportCollection.call(null,userInput);
 			},		
@@ -28327,11 +28326,11 @@
 				return (
 					React.createElement("div", null, 
 						React.createElement("h4", {className: "subTitle"}, "Export Postman collection"), 
-							React.createElement("div", {className: "exportSection"}, 
-							React.createElement("div", {className: "uk-form"}, 
-								React.createElement("label", {className: "uk-form-label"}, "Collection file path:"), 
-								React.createElement("input", {className: "uk-form-large", ref: "pathInput", defaultValue: self.props.defaultValue, type: "text", width: "300"})
-							)), 
+							// React.createElement("div", {className: "exportSection"}, //by victorchen 20200714
+							// React.createElement("div", {className: "uk-form"},
+							// 	React.createElement("label", {className: "uk-form-label"}, "Collection file path:"),
+							// 	React.createElement("input", {className: "uk-form-large", ref: "pathInput", defaultValue: self.props.defaultValue, type: "text", width: "300"})
+							// )),
 					    React.createElement("div", {className: "exportSection-btn"}, 
 			            	        React.createElement("button", {type: "button", className: "uk-button", onClick: self.dealSave}, "Save")
 		                        )
@@ -28340,7 +28339,7 @@
 			},
 			setFocus:function(){
 				var self = this;
-				React.findDOMNode(self.refs.pathInput).focus();
+				//React.findDOMNode(self.refs.pathInput).focus();  //by victorchen 20200714
 			},
 			componentDidUpdate:function(){
 				this.setFocus();
