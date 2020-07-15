@@ -217,21 +217,32 @@
 				console.log(data);
 				// recordSet[data.id] = null;
 				// eventCenter.dispatchEvent("recordAdd");
-				var data = {
-					type: 'export',
-					path: '',
-					data: [data.id]
-				}
-				ws.send(data,function(){
-				})
+				// var data = {
+				// 	type: 'export',
+				// 	path: '',
+				// 	data: [data.id]
+				// }
+				var ExportPanel = PopupContent["exportP"];
+				exportPanelEl = (React.createElement(ExportPanel, {data: data, onExportCollection: syncCase}) );
+				showPop({ left:"60%", content:exportPanelEl });
+				// ws.send(data,function(){})
 			}
 			else
 			showPop({left:"35%",content:React.createElement(PopupContent["detail"], {data:data})});
 		}
-
+		function syncCase(data){
+			var data = {
+				type: 'export',
+				path: '',
+				data: [data.id]
+			}
+			ws.send(data,function(){
+				hidePop();
+			});
+		};
 		function updateShowedSet(idSet){
 			showedIdSet = idSet;
-		}
+		};
 
 		//init recorder panel
 		recorder = React.render(
@@ -28318,7 +28329,8 @@
 				var self = this,
 					userInput = '';//React.findDOMNode(self.refs.pathInput).value; //by victorchen 20200714
 
-				self.props.onExportCollection && self.props.onExportCollection.call(null,userInput);
+				self.props.onExportCollection && self.props.onExportCollection.call(null,self.props.data);
+				// self.props.onExportCollection && self.props.onExportCollection.call(null,userInput);
 			},		
 			render:function(){
 				var self = this;

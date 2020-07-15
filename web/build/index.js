@@ -162,8 +162,11 @@ var recorder;
 				path: '',
 				data: [data.id]
 			}
-			ws.send(data,function(){
-			})
+			// var defaultPath = resObj.fullPath + "/default.postman_collection";
+			// var ExportPanel = PopupContent["exportP"];
+			// exportPanelEl = (React.createElement(ExportPanel) );
+			// showPop({ left:"60%", content:exportPanelEl });
+			ws.send(data,function(){})
 		}
 		else
 		showPop({left:"35%",content:React.createElement(PopupContent["detail"], {data:data})});
