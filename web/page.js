@@ -222,6 +222,10 @@
 				// 	path: '',
 				// 	data: [data.id]
 				// }
+				// if (data.reqHeader['content-type']=="application/x-www-form-urlencoded"){
+				// 	var querystring = require('querystring');
+				// 	data.reqbody = querystring.unescape(data.reqbody)
+				// }
 				var ExportPanel = PopupContent["exportP"];
 				exportPanelEl = (React.createElement(ExportPanel, {data: data, onExportCollection: syncCase}) );
 				showPop({ left:"60%", content:exportPanelEl });
@@ -233,7 +237,7 @@
 		function syncCase(data){
 			var data = {
 				type: 'export',
-				path: '',
+				path: data.case_id,
 				data: [data.id]
 			}
 			ws.send(data,function(){
@@ -302,8 +306,6 @@
 				exportPanelEl = (React.createElement(ExportPanel, {defaultValue: defaultPath, onExportCollection: exportCollection}) );
 				showPop({ left:"60%", content:exportPanelEl });			
 			});
-			
-			
 		});	
 
 		function exportCollection(userInput){
@@ -28327,8 +28329,8 @@
 		var ExportPanel = React.createClass({displayName: "ExportPanel",
 			dealSave:function(){
 				var self = this,
-					userInput = '';//React.findDOMNode(self.refs.pathInput).value; //by victorchen 20200714
-
+					userInput = React.findDOMNode(self.refs.pathInput).value; //by victorchen 20200714
+				self.props.data['case_id'] = userInput;
 				self.props.onExportCollection && self.props.onExportCollection.call(null,self.props.data);
 				// self.props.onExportCollection && self.props.onExportCollection.call(null,userInput);
 			},		
@@ -28338,11 +28340,11 @@
 				return (
 					React.createElement("div", null, 
 						React.createElement("h4", {className: "subTitle"}, "Export Postman collection"), 
-							// React.createElement("div", {className: "exportSection"}, //by victorchen 20200714
-							// React.createElement("div", {className: "uk-form"},
-							// 	React.createElement("label", {className: "uk-form-label"}, "Collection file path:"),
-							// 	React.createElement("input", {className: "uk-form-large", ref: "pathInput", defaultValue: self.props.defaultValue, type: "text", width: "300"})
-							// )),
+							React.createElement("div", {className: "exportSection"}, //by victorchen 20200714
+							React.createElement("div", {className: "uk-form"},
+								React.createElement("label", {className: "uk-form-label"}, "Test case ID:"),
+								React.createElement("input", {className: "uk-form-large", ref: "pathInput", defaultValue: self.props.defaultValue, type: "text", width: "300"})
+							)),
 					    React.createElement("div", {className: "exportSection-btn"}, 
 			            	        React.createElement("button", {type: "button", className: "uk-button", onClick: self.dealSave}, "Save")
 		                        )
@@ -28351,7 +28353,7 @@
 			},
 			setFocus:function(){
 				var self = this;
-				//React.findDOMNode(self.refs.pathInput).focus();  //by victorchen 20200714
+				React.findDOMNode(self.refs.pathInput).focus();  //by victorchen 20200714
 			},
 			componentDidUpdate:function(){
 				this.setFocus();

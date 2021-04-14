@@ -156,12 +156,13 @@ var recorder;
 		}
 		else if(event.target.className == 'uk-icon-refresh')
 		{
-
+			console.log("aaaaaa",data);
 			var data = {
 				type: 'export',
-				path: '',
+				path: resObj.fullPath,
 				data: [data.id]
 			}
+
 			// var defaultPath = resObj.fullPath + "/default.postman_collection";
 			// var ExportPanel = PopupContent["exportP"];
 			// exportPanelEl = (React.createElement(ExportPanel) );
@@ -248,7 +249,8 @@ var recorder;
 			type: 'export',
 			path: userInput, 
 			data: showedIdSet
-		}
+		};
+		console.log(userInput);
 		ws.send(data,function(){
 			hidePop();
 		});
