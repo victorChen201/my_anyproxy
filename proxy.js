@@ -33,6 +33,7 @@ var T_TYPE_HTTP            = 0,
     DEFAULT_WEB_PORT       = 8002, // port for web interface
     DEFAULT_WEBSOCKET_PORT = 8003, // internal web socket for web interface, not for end users
     DEFAULT_CONFIG_PORT    = 8088,
+    // DEFAULT_REPORT_PORT    = 8099, // port for report server
     DEFAULT_HOST           = "localhost",
     DEFAULT_TYPE           = T_TYPE_HTTP;
 
@@ -63,6 +64,7 @@ function proxyServer(option){
         proxyWebPort        = option.webPort       || DEFAULT_WEB_PORT,       //port for web interface
         socketPort          = option.socketPort    || DEFAULT_WEBSOCKET_PORT, //port for websocket
         proxyConfigPort     = option.webConfigPort || DEFAULT_CONFIG_PORT,    //port to ui config server
+        // reportServerPort    = option.reporConfigPort || DEFAULT_REPORT_PORT,  //port for report server
         disableWebInterface = !!option.disableWebInterface,
         ifSilent            = !!option.silent;
 
@@ -141,6 +143,17 @@ function proxyServer(option){
                     callback(null);
                 }
             },
+            // //creat report server
+            // function(callback){
+            //     self.httpReportServer = http.createServer(reportHandler.userRequestHandler);
+            //     callback(null);
+            // },
+
+            //handle CONNECT request for https over http
+            // function(callback){
+            //     self.httpReportServer.on('connect',reportHandler.connectReqHandler);
+            //     callback(null);
+            // },
 
             //handle CONNECT request for https over http
             function(callback){
@@ -154,6 +167,11 @@ function proxyServer(option){
                 callback(null);
             },
 
+            // //start report server
+            // function(callback){
+            //     self.httpReportServer.listen(reportServerPort);
+            //     callback(null);
+            // },
             //start web socket service
             function(callback){
                 self.ws = new wsServer({port : socketPort});
