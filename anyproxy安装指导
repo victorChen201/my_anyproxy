@@ -1,0 +1,5 @@
+1、安装nodejs  版本8.12.0
+2、安装npm 
+3、npm install -g anyproxy@3.10.3
+4、npm install -g node-uuid
+5、下载并替换anyproxy包
